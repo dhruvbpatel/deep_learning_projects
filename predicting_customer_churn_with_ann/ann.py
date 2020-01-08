@@ -11,7 +11,7 @@ Created on Tue Jan  7 21:38:26 2020
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
+ 
 # Importing the dataset
 dataset = pd.read_csv('Churn_Modelling.csv')
 X = dataset.iloc[:,3:13].values          ## as 1st 3 columns are not significant in predicting if customer will exit , so drop them
