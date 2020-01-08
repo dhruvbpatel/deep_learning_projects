@@ -11,7 +11,7 @@ Created on Tue Jan  7 21:38:26 2020
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
- 
+     
 # Importing the dataset
 dataset = pd.read_csv('Churn_Modelling.csv')
 X = dataset.iloc[:,3:13].values          ## as 1st 3 columns are not significant in predicting if customer will exit , so drop them
@@ -49,6 +49,8 @@ X_test = sc.transform(X_test)
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.layers import Dropout 
+
  
 ### our ANN build
 
@@ -58,7 +60,7 @@ classifier = Sequential()
  ## uniform is initializing random uniform number close to 0 as weight for our nodes
  ## selecting activation as relu
 classifier.add(Dense(input_dim=11,output_dim=6,init='uniform',activation='relu',)) ## first hidden layer
-
+classifier.add(Dropout(p=0.1)) ## this will randomly discard 10% of neurons so that they are not overfitted
 classifier.add(Dense(output_dim=6,init='uniform',activation='relu',)) ## second hidden layer
 
 classifier.add(Dense(output_dim=1,init='uniform',activation='sigmoid',)) ## output layer
@@ -72,9 +74,10 @@ classifier.compile(optimizer='adam',loss='binary_crossentropy',metrics =['accura
 
 
 classifier.fit(X_train,y_train,batch_size=10,epochs=100)
+
+
+
  
-# Fitting classifier to the Training set
-# Create your classifier here
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)  ### this pred method will return probabilities
@@ -84,5 +87,68 @@ from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test,y_pred)
 
 
+# Predicting a single new observation
+"""Predict if the customer with the following informations will leave the bank:
+Geography: France
+Credit Score: 600
+Gender: Male
+Age: 40
+Tenure: 3
+Balance: 60000
+Number of Products: 2
+Has Credit Card: Yes
+Is Active Member: Yes
+Estimated Salary: 50000
 
+
+
+new_prediction = classifier.predict(sc.transform(np.array([[0.0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])))
+new_prediction = (new_prediction > 0.5)
+
+"""
+
+### Evaluating ANN
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import cross_val_score
+
+def build_classifier(): ## this will build our ANN 
+    classifier = Sequential()
+    
+    classifier.add(Dense(input_dim=11,output_dim=6,init='uniform',activation='relu',)) ## first hidden layer
+    
+    classifier.add(Dense(output_dim=6,init='uniform',activation='relu',)) ## second hidden layer
+    
+    classifier.add(Dense(output_dim=1,init='uniform',activation='sigmoid',)) ## output layer
+
+    classifier.compile(optimizer='adam',loss='binary_crossentropy',metrics =['accuracy'])
      
+    return classifier
+classifier = KerasClassifier(build_fn=build_classifier,batch_size=10,nb_epoch=100)
+accuracies = cross_val_score(estimator=classifier,X=X_train,y=y_train,cv=10,n_jobs=-1) ## n jobs for running on multiple cpu's
+
+mean = accuracies.mean()    
+var = accuracies.std()
+
+
+
+## hyper parameter tuning the ANN
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import  GridSearchCV
+
+def build_classifier(optimizer): ## this will build our ANN 
+    classifier = Sequential()
+    classifier.add(Dense(input_dim=11,output_dim=6,init='uniform',activation='relu',)) ## first hidden layer
+    classifier.add(Dense(output_dim=6,init='uniform',activation='relu',)) ## second hidden layer
+    classifier.add(Dense(output_dim=1,init='uniform',activation='sigmoid',)) ## output layer
+    classifier.compile(optimizer=optimizer,loss='binary_crossentropy',metrics =['accuracy']) 
+    return classifier
+classifier = KerasClassifier(build_fn=build_classifier)
+parameters = {'batch_size':[25,35],'nb_epoch':[100,300],
+              'optimizer':['adam','rmsprop']
+              }
+grid_search=GridSearchCV(estimator = classifier,param_grid = parameters,scoring='accuracy',cv=10)
+grid_search=grid_search.fit(X_train,y_train)
+best_param = grid_search.best_params_
+best_accuracy=grid_search.best_score_
+
+
