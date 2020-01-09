@@ -6,7 +6,6 @@ Created on Tue Jan  7 21:38:26 2020
 """
 
 # Classification template
-
 # Importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -143,12 +142,11 @@ def build_classifier(optimizer): ## this will build our ANN
     classifier.compile(optimizer=optimizer,loss='binary_crossentropy',metrics =['accuracy']) 
     return classifier
 classifier = KerasClassifier(build_fn=build_classifier)
-parameters = {'batch_size':[25,35],'nb_epoch':[100,300],
+parameters = {'batch_size':[25,33],'nb_epoch':[100,500],
               'optimizer':['adam','rmsprop']
               }
 grid_search=GridSearchCV(estimator = classifier,param_grid = parameters,scoring='accuracy',cv=10)
 grid_search=grid_search.fit(X_train,y_train)
 best_param = grid_search.best_params_
 best_accuracy=grid_search.best_score_
-
 
