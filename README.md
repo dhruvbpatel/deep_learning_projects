@@ -1,5 +1,5 @@
 # Deep Learning Projects
-* Hi, thanks for dropping by, here is a curated list of deep learning projects by me.
+* Hi, thanks for dropping by, here is a curated list of deep learning projects that i have done.
 * All the projects are perfomed using python 3.6+ and are available in the format of jupyter notebooks or .py file format
 
 # Index
