@@ -11,4 +11,4 @@
 
 * [Stock Price Prediction using LSTM](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/stock_price_prediction_using_LSTM)
 
-* [Credit Card Fraud Detection](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/credit_card_fraud_detection) (*in progress*)
+* [Credit Card Fraud Detection](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/credit_card_fraud_detection) (**in progress**)
