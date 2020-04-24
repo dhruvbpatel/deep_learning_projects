@@ -5,6 +5,7 @@
 # Index
 
 ### Projects 
+*  [Multiclass Image Classification using fastai](https://github.com/dhruvbpatel/deep_learning_projects/blob/master/Intel-Multiclass-Image-Classification-Using-fastai/Multiclass%20Image%20Classification%20Using%20Fastai.ipynb)
 * [Cat/Dog Classfication](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/cat_dog_classification_with_cnn)
 
 * [Customer Churn Prediction](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/predicting_customer_churn_with_ann)
@@ -12,6 +13,7 @@
 * [Stock Price Prediction using LSTM](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/stock_price_prediction_using_LSTM)
 
 * [Credit Card Fraud Detection](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/credit_card_fraud_detection) (**in progress**)
+
 
 ##
 ### Abstract
