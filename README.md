@@ -1,3 +1,4 @@
+
 # Deep Learning Projects
 * Hi, thanks for dropping by, here is a curated list of deep learning projects that i have done.
 * All the projects are perfomed using python 3.6+ and are available in the format of jupyter notebooks or .py file format
@@ -5,7 +6,7 @@
 # Index
 
 ### Projects 
-*  [Multiclass Image Classification using fastai](https://github.com/dhruvbpatel/deep_learning_projects/blob/master/Intel-Multiclass-Image-Classification-Using-fastai/Multiclass%20Image%20Classification%20Using%20Fastai.ipynb)
+*  [Multiclass Image Classification using fastai](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/Intel-Multiclass-Image-Classification-Using-fastai)
 * [Cat/Dog Classfication](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/cat_dog_classification_with_cnn)
 
 * [Customer Churn Prediction](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/predicting_customer_churn_with_ann)
