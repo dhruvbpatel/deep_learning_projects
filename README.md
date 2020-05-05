@@ -14,9 +14,3 @@
 
 * [Credit Card Fraud Detection](https://github.com/dhruvbpatel/deep_learning_projects/tree/master/credit_card_fraud_detection) (**in progress**)
 
-
-##
-### Abstract
-* Some abstract topics in deep learning with implementation
- 1. [Boltzamn Machines]()
- 
